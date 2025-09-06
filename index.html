@@ -1,399 +1,204 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projeto Alteridades</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pesquisa ALTERIDADE – mapeando a situação de gênero nas Humanidades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      /* Paleta inspirada na marca Alteridade CAPES */
+      --navy:#0f2d3a;         /* fundo institucional */
+      --blue:#5fb3d9;         /* azul-claro de apoio */
+      --gold:#f2b705;         /* destaque primário */
+      --coral:#f26a5a;        /* CTAs/hover */
+      --pink:#f29db2;         /* detalhes sutis */
+      --ink:#0c202a;          /* texto escuro */
+      --paper:#ffffff;        /* branco */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--paper)}
+
+    /* ---------- Layout util ---------- */
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .btn{display:inline-block;padding:.9rem 1.25rem;border-radius:16px;font-weight:600;text-decoration:none;transition:.2s ease;}
+    .btn-primary{background:var(--gold);color:#1a1a1a}
+    .btn-primary:hover{background:var(--coral);color:#111}
+    .btn-outline{border:2px solid var(--gold);color:var(--gold)}
+    .btn-outline:hover{background:var(--gold);color:#1a1a1a}
+
+    /* ---------- Header ---------- */
+    header{position:sticky;top:0;z-index:40;background:color-mix(in oklab, var(--navy) 92%, black 0%);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--coral));display:grid;place-items:center;color:#111;font-weight:800}
+    .brand h1{font-size:1.15rem;line-height:1.1;margin:0}
+    .nav a{color:#fff;text-decoration:none;font-weight:500;opacity:.95}
+    .nav-links{display:flex;gap:22px}
+
+    /* ---------- Hero ---------- */
+    .hero{position:relative;isolation:isolate;background:var(--navy);color:#fff;}
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:80px 0}
+    .hero h2{font-family:"Shadows Into Light",cursive;font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:.02em;margin:0 0 8px}
+    .hero h3{font-size:clamp(1.8rem,3.4vw,2.2rem);font-weight:700;margin:.2rem 0 1rem}
+    .hero p{font-weight:300;opacity:.95;max-width:60ch}
+
+    /* Triângulo com padrão de linhas (inline SVG) */
+    .hero-art{position:relative;height:380px}
+    .hero-art::after{
+      content:"";position:absolute;inset:0;clip-path:polygon(30% 0, 100% 0, 100% 100%);
+      background:
+        /* fundo branco */
+        linear-gradient(0deg,#fff,#fff),
+        /* padrão de linhas contínuas em SVG embutido */
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><defs><pattern id="p" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M10,10 C60,0 60,60 110,50 M0,70 C40,60 80,100 120,90 M20,110 C50,80 90,140 110,120 M10,40 C50,30 80,50 120,40" fill="none" stroke="%23bfbfbf" stroke-width="1.5"/></pattern></defs><rect width="100%" height="100%" fill="white"/><rect width="100%" height="100%" fill="url(%23p)"/></svg>');
+      background-blend-mode:multiply; background-size:cover; border-left:10px solid color-mix(in oklab, var(--blue) 60%, white 40%);
     }
 
-    body {
-      margin: 0;
-      font-family: 'Libre Baskerville', serif;
-      background-color: #f9f5f0;
-      color: #333;
-      line-height: 1.6;
-    }
+    /* ---------- Seções ---------- */
+    section{padding:70px 0}
+    .section-dark{background:var(--navy);color:#fff}
+    .kicker{color:var(--coral);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem}
+    .title{margin:.4rem 0 1rem;font-size:clamp(1.6rem,3.2vw,2.2rem)}
+    .lead{font-size:1.05rem;opacity:.9;max-width:70ch}
 
-    header {
-      background-color: #fff;
-      border-bottom: 1px solid #e0d5c8;
-      padding: 20px 40px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
+    .card{background:#fff;border:1px solid #e7e7e7;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    .card h4{margin:0 0 6px}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:color-mix(in oklab, var(--blue) 20%, white 80%);border:1px solid color-mix(in oklab, var(--blue) 50%, white 50%);font-size:.8rem;margin-right:6px}
 
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* ---------- CTA bloco ---------- */
+    .cta{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,color-mix(in oklab, var(--blue) 80%, white 20%), color-mix(in oklab, var(--pink) 60%, white 40%));padding:28px;border-radius:22px;margin-top:36px;color:#0f1a20}
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
+    /* ---------- Rodapé e Logos ---------- */
+    footer{background:var(--navy);color:#fff;padding:36px 0}
+    .logos{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+    .logos img{height:40px;filter:grayscale(0%)}
 
-    .logo img {
-      height: 60px;
-      margin-right: 15px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #6d4c41;
-      font-weight: 700;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    nav a {
-      margin-left: 25px;
-      text-decoration: none;
-      color: #6d4c41;
-      font-weight: bold;
-      font-size: 15px;
-      font-family: 'Open Sans', sans-serif;
-      transition: color 0.3s;
-      position: relative;
-    }
-
-    nav a:hover {
-      color: #a1887f;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: #a1887f;
-      transition: width 0.3s;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1200x600/?philosophy,books') no-repeat center center;
-      background-size: cover;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      margin-top: 80px;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      padding: 0 20px;
-    }
-
-    .hero h2 {
-      font-size: 42px;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    }
-
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 60px auto;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      padding: 40px;
-    }
-
-    section {
-      margin-bottom: 50px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #e0d5c8;
-    }
-
-    section:last-child {
-      border-bottom: none;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-top: 0;
-      margin-bottom: 25px;
-      color: #6d4c41;
-      position: relative;
-      padding-bottom: 12px;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background-color: #a1887f;
-    }
-
-    h3 {
-      font-size: 24px;
-      color: #6d4c41;
-      margin-top: 30px;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      color: #555;
-    }
-
-    .quote {
-      font-style: italic;
-      padding: 20px;
-      background-color: #f9f5f0;
-      border-left: 4px solid #a1887f;
-      margin: 30px 0;
-    }
-
-    .quote p {
-      margin: 0;
-    }
-
-    .quote-author {
-      font-weight: bold;
-      text-align: right;
-      margin-top: 10px;
-    }
-
-    ul {
-      padding-left: 20px;
-      margin-bottom: 25px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      color: #555;
-      position: relative;
-      padding-left: 5px;
-    }
-
-    li::marker {
-      color: #a1887f;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: #6d4c41;
-      color: #fff;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 4px;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 600;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #5d4037;
-    }
-
-    .form-container {
-      border-radius: 6px;
-      margin-top: 30px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 800px;
-      border: none;
-      margin-top: 0;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-      padding: 30px 20px;
-      background-color: #f1e8e0;
-      border-top: 1px solid #e0d5c8;
-    }
-
-    .footer-content {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      margin-bottom: 20px;
-    }
-
-    .footer-links a {
-      color: #6d4c41;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        padding: 15px 20px;
-      }
-
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        margin-top: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      nav a {
-        margin: 5px 10px;
-      }
-
-      .hero {
-        height: 300px;
-        margin-top: 120px;
-      }
-
-      .hero h2 {
-        font-size: 32px;
-      }
-
-      .container {
-        padding: 20px;
-      }
-
-      h2 {
-        font-size: 28px;
-      }
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 960px){
+      .hero-inner{grid-template-columns:1fr;gap:24px;padding:56px 0}
+      .hero-art{height:260px}
+      .features{grid-template-columns:1fr;}
+      .cta{flex-direction:column;align-items:flex-start}
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <div class="header-content">
-      <div class="logo">
-        <h1>Projeto Alteridades</h1>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <h1>Pesquisa <strong>ALTERIDADE</strong></h1>
       </div>
-      <nav>
-        <a href="#pagina-principal">Página Principal</a>
-        <a href="#rede-interfem">Rede InterFem</a>
-        <a href="#projeto-alteridades">Projeto Alteridades</a>
-        <a href="#responda-pesquisa">Responda à Pesquisa</a>
+      <nav class="nav-links" aria-label="principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#participar" class="btn btn-outline">Responder formulário</a>
       </nav>
     </div>
   </header>
 
-  <div class="hero">
-    <div class="hero-content">
-      <h2>Explorando Alteridades</h2>
-      <p>Um espaço para reflexão sobre questões de gênero, diversidade e representatividade na filosofia e na sociedade contemporânea.</p>
-      <a href="#responda-pesquisa" class="btn">Participar da Pesquisa</a>
+  <!-- Hero -->
+  <section class="hero" role="banner">
+    <div class="container hero-inner">
+      <div>
+        <h2>ALTERIDADE</h2>
+        <h3>Mapeando a situação de gênero nas Humanidades</h3>
+        <p>Projeto acadêmico com foco em diversidade, equidade e inclusão. Participe respondendo ao formulário e ajude a construir um panorama nacional sobre gênero na Pós-Graduação.</p>
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#participar">Responder ao formulário</a>
+          <a class="btn btn-outline" href="#sobre">Saiba mais</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="container">
-    <section id="pagina-principal">
-      <h2>Bem-vindo ao Projeto Alteridades</h2>
-      <p>O Projeto Alteridades é uma iniciativa dedicada a promover o diálogo e a reflexão sobre questões de gênero, diversidade e representatividade no pensamento filosófico e na sociedade contemporânea.</p>
+  <!-- Sobre -->
+  <section id="sobre">
+    <div class="container">
+      <span class="kicker">Apresentação</span>
+      <h3 class="title">Sobre a pesquisa</h3>
+      <p class="lead">A Pesquisa <strong>Alteridade</strong> investiga percepções, práticas e indicadores de gênero nas Humanidades. O estudo combina questionários quantitativos e qualitativos, garantindo anonimato das respostas e retorno público dos resultados agregados.</p>
 
-      <p>Nosso objetivo é criar um espaço de encontro e troca entre diferentes perspectivas, valorizando a pluralidade de vozes e experiências que compõem o tecido social e intelectual de nossa época.</p>
-
-      <div class="quote">
-        <p>"A filosofia não é apenas um exercício intelectual, mas uma prática de transformação de si e do mundo."</p>
-        <div class="quote-author">— Simone de Beauvoir</div>
+      <div class="features">
+        <article class="card">
+          <h4>Objetivos</h4>
+          <p>Diagnosticar assimetrias e mapear boas práticas institucionais, subsidiando políticas de equidade.</p>
+          <div><span class="chip">equidade</span><span class="chip">indicadores</span></div>
+        </article>
+        <article class="card">
+          <h4>Público</h4>
+          <p>Discentes, docentes e técnicas/os das áreas de Humanidades, em programas de graduação e pós.</p>
+          <div><span class="chip">gradução</span><span class="chip">pós-graduação</span></div>
+        </article>
+        <article class="card">
+          <h4>Ética</h4>
+          <p>Coleta consentida, dados anônimos e publicação de resultados agregados com transparência.</p>
+          <div><span class="chip">LGPD</span><span class="chip">anonimização</span></div>
+        </article>
       </div>
 
-      <p>Através de pesquisas, eventos e publicações, buscamos ampliar as vozes femininas e de grupos historicamente marginalizados no campo da filosofia e do pensamento crítico.</p>
-    </section>
-
-    <section id="rede-interfem">
-      <h2>Rede InterFem</h2>
-      <p>A Rede InterFem é uma articulação de pesquisadoras, professoras e estudantes comprometidas com a promoção da equidade de gênero no ambiente acadêmico e na produção de conhecimento.</p>
-
-      <h3>Nossos Princípios</h3>
-      <p>Acreditamos na importância de:</p>
-      <ul>
-        <li>Valorizar e visibilizar a produção intelectual de mulheres</li>
-        <li>Promover a diversidade epistêmica</li>
-        <li>Fomentar práticas colaborativas de pesquisa</li>
-        <li>Construir pontes entre a academia e os movimentos sociais</li>
-      </ul>
-
-      <p>A Rede InterFem realiza encontros periódicos, grupos de estudo e eventos abertos ao público interessado em questões de gênero e filosofia.</p>
-    </section>
-
-    <section id="projeto-alteridades">
-      <h2>Sobre o Projeto Alteridades</h2>
-      <p>O Projeto Alteridades nasceu da necessidade de criar espaços de reflexão sobre a diferença e a diversidade no pensamento filosófico contemporâneo.</p>
-
-      <h3>Linhas de Atuação</h3>
-      <p>Nossas atividades se organizam em torno de três eixos principais:</p>
-
-      <h3>1. Pesquisa</h3>
-      <p>Desenvolvemos investigações sobre a presença e a contribuição de mulheres e outros grupos sub-representados na história da filosofia e no pensamento contemporâneo.</p>
-
-      <h3>2. Formação</h3>
-      <p>Oferecemos cursos, oficinas e grupos de estudo voltados para a discussão de temas relacionados à filosofia feminista, estudos de gênero e epistemologias situadas.</p>
-
-      <h3>3. Divulgação</h3>
-      <p>Produzimos materiais e eventos que visam ampliar o alcance das reflexões filosóficas para além dos muros acadêmicos, estabelecendo diálogos com diferentes públicos e contextos sociais.</p>
-    </section>
-
-    <section id="responda-pesquisa">
-      <h2>Participe da Nossa Pesquisa</h2>
-      <p>Convidamos você a contribuir com nossa pesquisa sobre percepções e experiências relacionadas às questões de gênero no campo filosófico e acadêmico. Sua participação é fundamental para ampliarmos nossa compreensão sobre os desafios e possibilidades nessa área.</p>
-
-      <p>O preenchimento do formulário leva aproximadamente 10 minutos. Todas as informações fornecidas serão tratadas com confidencialidade e utilizadas apenas para fins de pesquisa.</p>
-
-      <div class="form-container">
-        <script src="https://www.cognitoforms.com/f/seamless.js" data-key="H2948E1sxEqIbRmIIsoghA" data-form="5"></script>
+      <div class="cta">
+        <div>
+          <h4 style="margin:0 0 6px">Quer contribuir?</h4>
+          <p style="margin:0">Leva menos de 8 minutos. Sua participação fortalece a qualidade dos dados e das políticas públicas.</p>
+        </div>
+        <a class="btn btn-primary" id="participar" href="#form">Ir para o formulário</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <!-- Metodologia -->
+  <section id="metodologia" class="section-dark">
+    <div class="container">
+      <span class="kicker">Como fazemos</span>
+      <h3 class="title">Metodologia</h3>
+      <p class="lead">Questionário online com perguntas fechadas e abertas; análise estatística descritiva e análise temática; relatório público com visualizações e recomendações. Todas as etapas seguem boas práticas de pesquisa social e diretrizes de acessibilidade.</p>
+    </div>
+  </section>
+
+  <!-- Equipe / Logos -->
+  <section id="equipe">
+    <div class="container">
+      <span class="kicker">Quem realiza</span>
+      <h3 class="title">Equipe, realização e apoios</h3>
+      <div class="logos" aria-label="Logos de instituições">
+        <!-- Substitua os src pelos arquivos de logo finais -->
+        <img src="assets/logo-pucrs-hum.png" alt="PUCRS Escola de Humanidades" />
+        <img src="assets/logo-alteridade-capes.png" alt="Programa Alteridade na Pós-Graduação" />
+        <img src="assets/logo-capes.png" alt="CAPES" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário (placeholder) -->
+  <section id="form" class="section-dark">
+    <div class="container">
+      <span class="kicker">Participe</span>
+      <h3 class="title">Formulário</h3>
+      <p class="lead">Aqui você pode incorporar o formulário (ex.: Cognito, Google Forms). Abaixo um exemplo de iframe:</p>
+      <div style="background:#0a2230;padding:14px;border-radius:14px">
+        <!-- Exemplo: troque o src pelo link de incorporação do seu formulário Cognito -->
+        <iframe title="Formulário Alteridade" src="https://example.com/embed-form" style="width:100%;height:560px;border:0;border-radius:12px;background:#fff"></iframe>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="#pagina-principal">Início</a>
-        <a href="#rede-interfem">Rede InterFem</a>
-        <a href="#projeto-alteridades">Projeto</a>
-        <a href="#responda-pesquisa">Pesquisa</a>
-        <a href="mailto:contato@projetoalteridades.org">Contato</a>
-      </div>
-      <p>&copy; 2025 Projeto Alteridades. Desenvolvido com inspiração em filosofas.org</p>
+    <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
+      <p style="margin:0;opacity:.9">© <span id="y"></span> Pesquisa Alteridade • Todos os direitos reservados</p>
+      <a class="btn btn-outline" href="#">Política de Privacidade</a>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
