@@ -59,14 +59,17 @@
         }
 
         .brand-mark {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--gold), var(--coral));
-            display: grid;
-            place-items: center;
-            color: #111;
-            font-weight: 800
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: block;
+            object-fit: contain;
+        }
+        @media (max-width: 640px) {
+            .brand-mark {
+                width: 34px;
+                height: 34px;
+            }
         }
 
         .nav a {
@@ -145,12 +148,11 @@
 <body>
 <header>
     <div class="container nav">
-        <div class="brand">
-            <div class="brand-mark">A</div>
+        <a class="brand" href="index.html" aria-label="Ir para a página inicial">
+            <img src="assets/Logo-sem-bg.png" class="brand-mark" width="40" height="40" alt="Logo da Pesquisa Alteridade" />
             <h1 style="font-size:1.15rem;line-height:1.1;margin:0">Pesquisa <strong>ALTERIDADE</strong></h1>
-        </div>
+        </a>
         <nav aria-label="principal">
-            <a class="btn btn-outline" href="index.html">Início</a>
         </nav>
     </div>
 </header>
