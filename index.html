@@ -13,7 +13,7 @@
             /* Paleta inspirada na marca Alteridade CAPES */
             --navy: #102D3D; /* fundo institucional */
             --blue: #5fb3d9; /* azul-claro de apoio */
-            --gold: #f2b705; /* destaque primário */
+            --gold: #e9ac66; /* destaque primário */
             --coral: #f26a5a; /* CTAs/hover */
             --pink: #f29db2; /* detalhes sutis */
             --ink: #0c202a; /* texto escuro */
@@ -97,6 +97,7 @@
             display: block;
             object-fit: contain;
         }
+
         @media (max-width: 640px) {
             .brand-mark {
                 width: 34px;
@@ -105,7 +106,7 @@
         }
 
         .brand h1 {
-            font-size: 1.15rem;
+            font-size: 2.5rem;
             line-height: 1.1;
             margin: 0
         }
@@ -131,7 +132,7 @@
         }
 
         .hero-inner {
-            display: grid;
+            /*display: grid;*/
             grid-template-columns:1.2fr .8fr;
             gap: 40px;
             align-items: center;
@@ -139,14 +140,14 @@
         }
 
         .hero h2 {
-            font-family: "Shadows Into Light", cursive;
-            font-size: clamp(2.6rem, 6vw, 4.6rem);
+            /*font-family: "Shadows Into Light", cursive;*/
+            font-size: clamp(0.8rem, 3.4vw, 2.2rem);
             letter-spacing: .02em;
             margin: 0 0 8px
         }
 
         .hero h3 {
-            font-size: clamp(1.8rem, 3.4vw, 2.2rem);
+            font-size: 1.5rem;
             font-weight: 700;
             margin: .2rem 0 1rem
         }
@@ -154,7 +155,15 @@
         .hero p {
             font-weight: 300;
             opacity: .95;
-            max-width: 60ch
+            /*max-width: 60ch*/
+        }
+
+        .features p {
+            text-align: left;
+        }
+
+        p {
+            text-align: justify;
         }
 
         /* Triângulo com padrão de linhas (inline SVG) */
@@ -204,10 +213,16 @@
             font-size: clamp(1.6rem, 3.2vw, 2.2rem)
         }
 
+        h1 {
+            font-family: "Shadows Into Light", cursive;
+            font-size: clamp(2.6rem, 6vw, 4.6rem);
+            letter-spacing: .02em;
+            margin: 0 0 8px
+        }
+
         .lead {
             font-size: 1.05rem;
             opacity: .9;
-            max-width: 70ch
         }
 
         .features {
@@ -267,7 +282,7 @@
         }
 
         .logos img {
-            height: 40px;
+            height: 120px;
             filter: grayscale(0%)
         }
 
@@ -296,15 +311,18 @@
         .align-center {
             align-items: center;
         }
+
         .flex-center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .flex-column {
             display: flex;
             flex-direction: column;
         }
+
         .flex-row {
             display: flex;
             flex-direction: row;
@@ -316,9 +334,10 @@
 <header>
     <div class="container nav">
         <div class="brand">
-            <img src="assets/Logo-sem-bg.png" class="brand-mark" width="80" height="80" alt="Logo da Pesquisa Alteridade"/>
-<!--            <div class="brand-mark">A</div>-->
-            <h1>Pesquisa <strong>ALTERIDADE</strong></h1>
+            <img src="assets/Logo-sem-bg.png" class="brand-mark" width="80" height="80"
+                 alt="Logo da Pesquisa Alteridade"/>
+            <!--            <div class="brand-mark">A</div>-->
+            <h1>Alteridade</h1>
         </div>
         <nav class="nav-links flex-row align-center" aria-label="principal">
             <a href="#sobre">Sobre</a>
@@ -333,39 +352,48 @@
 <section class="hero" role="banner">
     <div class="container hero-inner">
         <div>
-            <h2>ALTERIDADE</h2>
-            <h3>Mapeando a situação de gênero nas Humanidades</h3>
-            <p>Projeto acadêmico com foco em diversidade, equidade e inclusão. Participe respondendo ao formulário e
-                ajude a construir um panorama nacional sobre gênero na Pós-Graduação.</p>
+            <h2>Programa de Desenvolvimento da Pós-Graduação (PDPG) Alteridade na Pós-Graduação</h2>
+            <p>Pesquisa realizada pelo Programa de Pós-Graduação em Filosofia da PUC-RS sobre os critérios de criação,
+                desenvolvimento e modelagem de dados sobre Alteridade na estruturação da Pós-Graduação das Ciências
+                Humanas nas regiões Norte, Sul e Centro Oeste do Brasil: mapeando questões interseccionais nas
+                Humanidades.
+            </p>
             <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
                 <a class="btn btn-primary" href="#participar">Responder ao formulário</a>
                 <a class="btn btn-outline" href="#sobre">Saiba mais</a>
             </div>
         </div>
-<!--        <div class="hero-art" aria-hidden="true"></div>-->
-        <img src="assets/carinhas.jpeg" alt="Carinhas" style="width:100%;height:auto;border-radius:12px">
+        <!--        <div class="hero-art" aria-hidden="true"></div>-->
     </div>
 </section>
 
 <!-- Sobre -->
 <section id="sobre">
-    <div class="container">
+    <div class="container" id="cards-sobre">
         <span class="kicker">Apresentação</span>
         <h3 class="title">Sobre a pesquisa</h3>
-        <p class="lead">A Pesquisa <strong>Alteridade</strong> investiga percepções, práticas e indicadores de gênero
-            nas Humanidades. O estudo combina questionários quantitativos e qualitativos, garantindo anonimato das
-            respostas e retorno público dos resultados agregados.</p>
+        <p class="lead">A pesquisa é financiada pelo edital PDPG-Alteridades CAPES e está sendo desenvolvida
+            no Programa de Pós-Graduação em Filosofia da PUC-RS. Partimos de uma revisão conceitual sobre Alteridade,
+            para criar critérios de mapeamento e análises acerca da paridade de gênero no corpo discente de PPGs das
+            Ciências Humanas, nas regiões Norte, Sul e Centro Oeste, desenvolvendo ferramenta de coleta de informação de
+            dados sobre as estruturas dos PPGs. O estudo combina questionário qualitativos com a leitura e interpretação
+            de dados coletados, garantindo anonimato das respostas e retorno público dos resultados agregados.
+        </p>
 
         <div class="features">
             <article class="card">
                 <h4>Objetivos</h4>
-                <p>Diagnosticar assimetrias e mapear boas práticas institucionais, subsidiando políticas de
-                    equidade.</p>
+                <p>Diagnosticar assimetrias e mapear boas práticas institucionais, através do olhar dos coordenadores,
+                    docentes e discentes dos PPGs das regiões Norte, Centro-Oeste e Sul, para subsidiar a proposta de
+                    políticas de equidade.</p>
                 <div><span class="chip">equidade</span><span class="chip">indicadores</span></div>
             </article>
             <article class="card">
                 <h4>Público</h4>
-                <p>Discentes, docentes e técnicas/os das áreas de Humanidades, em programas de graduação e pós.</p>
+                <p>Coordenadores de Pós-Graduação das Ciências Humanas e Discentes;
+                    Demais pessoas envolvidas (docentes, pesquisadores e pessoas técnicas) que quiserem contribuir podem
+                    participar!
+                </p>
                 <div><span class="chip">gradução</span><span class="chip">pós-graduação</span></div>
             </article>
             <article class="card">
@@ -391,9 +419,11 @@
     <div class="container">
         <span class="kicker">Como fazemos</span>
         <h3 class="title">Metodologia</h3>
-        <p class="lead">Questionário online com perguntas fechadas e abertas; análise estatística descritiva e análise
-            temática; relatório público com visualizações e recomendações. Todas as etapas seguem boas práticas de
-            pesquisa social e diretrizes de acessibilidade.</p>
+        <p class="lead">O projeto Alteridade - Mapeando a situação de Gênero nas Humanidades, é financiado pela CAPES
+            dentro do PDPG – Alteridade na Pós-Graduação, investiga como práticas de diversidade e inclusão estão
+            presentes nos Programas de Pós-Graduação em Ciências Humanas. Por meio de formulários, análises comparativas
+            e ferramentas de análise de dados, buscamos fortalecer políticas afirmativas e reduzir desigualdades no
+            Sistema Nacional de Pós-Graduação, com foco nas regiões Norte, Sul e Centro-Oeste.</p>
     </div>
 </section>
 
@@ -404,9 +434,9 @@
         <h3 class="title">Equipe, realização e apoios</h3>
         <div class="logos" aria-label="Logos de instituições">
             <!-- Substitua os src pelos arquivos de logo finais -->
-            <img src="assets/logo-pucrs-hum.png" alt="PUCRS Escola de Humanidades"/>
-            <img src="assets/logo-alteridade-capes.png" alt="Programa Alteridade na Pós-Graduação"/>
-            <img src="assets/logo-capes.png" alt="CAPES"/>
+            <img src="assets/puc-logo.png" alt="PUCRS Escola de Humanidades"/>
+            <img src="assets/logo-alteridade-no-bg.png" alt="Programa Alteridade na Pós-Graduação"/>
+            <img src="assets/capes-logo.png" alt="CAPES"/>
         </div>
     </div>
 </section>
@@ -419,17 +449,21 @@
 </footer>
 
 <!-- Modal de Seleção de Público -->
-<div id="publico-modal" aria-hidden="true" role="dialog" aria-labelledby="publico-modal-title" aria-modal="true" style="position:fixed;inset:0;display:none;z-index:1000">
+<div id="publico-modal" aria-hidden="true" role="dialog" aria-labelledby="publico-modal-title" aria-modal="true"
+     style="position:fixed;inset:0;display:none;z-index:1000">
     <!-- Overlay -->
     <div data-modal-overlay style="position:absolute;inset:0;background:rgba(0,0,0,.5)"></div>
     <!-- Caixa do modal -->
     <div style="position:relative;max-width:560px;margin:8vh auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden">
         <div style="padding:22px 22px 8px;display:flex;justify-content:space-between;align-items:center">
             <h4 id="publico-modal-title" style="margin:0;font-size:1.2rem">Para quem é o formulário?</h4>
-            <button type="button" data-modal-close aria-label="Fechar" class="btn btn-outline" style="padding:.4rem .7rem;border-radius:10px">✕</button>
+            <button type="button" data-modal-close aria-label="Fechar" class="btn btn-outline"
+                    style="padding:.4rem .7rem;border-radius:10px">✕
+            </button>
         </div>
         <div style="padding:0 22px 22px">
-            <p style="margin:6px 0 18px;opacity:.85">Selecione o seu perfil para seguir para a versão correta do questionário.</p>
+            <p style="margin:6px 0 18px;opacity:.85">Selecione o seu perfil para seguir para a versão correta do
+                questionário.</p>
             <div style="display:flex;gap:12px;flex-wrap:wrap">
                 <button type="button" class="btn btn-primary" id="btn-coordenadores">Para coordenadores</button>
                 <button type="button" class="btn btn-outline" id="btn-discentes">Para discentes</button>
@@ -450,20 +484,24 @@
         ...document.querySelectorAll('a[href="#participar"], a[href="#form"], #participar, .btn-primary[href="#participar"]')
     ];
 
-    function openModal(e){
-        if(e) e.preventDefault();
+    function openModal(e) {
+        if (e) e.preventDefault();
         modal.style.display = 'block';
-        modal.setAttribute('aria-hidden','false');
+        modal.setAttribute('aria-hidden', 'false');
         // focus no primeiro botão
-        setTimeout(()=>document.getElementById('btn-coordenadores').focus(), 0);
+        setTimeout(() => document.getElementById('btn-coordenadores').focus(), 0);
         document.addEventListener('keydown', escListener);
     }
-    function closeModal(){
+
+    function closeModal() {
         modal.style.display = 'none';
-        modal.setAttribute('aria-hidden','true');
+        modal.setAttribute('aria-hidden', 'true');
         document.removeEventListener('keydown', escListener);
     }
-    function escListener(ev){ if(ev.key === 'Escape') closeModal(); }
+
+    function escListener(ev) {
+        if (ev.key === 'Escape') closeModal();
+    }
 
     // Abrir modal a partir de todos os botões/links de participação
     openers.forEach(el => {
@@ -475,10 +513,10 @@
     modal.querySelector('[data-modal-close]').addEventListener('click', closeModal);
 
     // Ações dos botões
-    document.getElementById('btn-coordenadores').addEventListener('click', ()=>{
+    document.getElementById('btn-coordenadores').addEventListener('click', () => {
         window.location.href = URL_COORDENADORES;
     });
-    document.getElementById('btn-discentes').addEventListener('click', ()=>{
+    document.getElementById('btn-discentes').addEventListener('click', () => {
         window.location.href = URL_DISCENTES;
     });
 </script>
