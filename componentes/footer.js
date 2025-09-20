@@ -2,7 +2,8 @@
   function injectFooter(){
     var placeholder = document.getElementById('footer-placeholder');
     if(!placeholder) return;
-    fetch('assets/footer.html', {cache:'no-cache'})
+    // Busca o componente correto na pasta 'componentes'
+    fetch('componentes/footer.html', {cache:'no-cache'})
       .then(function(r){ return r.text(); })
       .then(function(html){
         placeholder.innerHTML = html;

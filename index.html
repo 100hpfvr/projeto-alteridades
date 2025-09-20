@@ -11,23 +11,9 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<!-- Header -->
-<header>
-    <div class="container nav">
-        <div class="brand">
-            <img src="assets/Logo-sem-bg.png" class="brand-mark" width="80" height="80"
-                 alt="Logo da Pesquisa Alteridade"/>
-            <!--            <div class="brand-mark">A</div>-->
-            <h1>Alteridade</h1>
-        </div>
-        <nav class="nav-links flex-row align-center" aria-label="principal">
-            <a href="#sobre">Sobre</a>
-            <a href="#metodologia">Metodologia</a>
-            <a href="#equipe">Equipe</a>
-            <a href="#participar" class="btn btn-outline">Responder formulário</a>
-        </nav>
-    </div>
-</header>
+<!-- Header (injetado) -->
+<div id="header-placeholder"></div>
+<script src="componentes/header.js"></script>
 
 <!-- Hero -->
 <section class="hero" role="banner">
@@ -136,7 +122,8 @@
             mais plurais e inclusivas, no contexto da pós-graduação brasileira.
         </p>
         <a href="#" id="expand-metodologia" aria-expanded="false" aria-controls="metodologia-extra"
-           style="color: var(--gold); font-weight:600; margin-left:.4rem; display: flex; flex-direction: row; justify-content: end" >Saiba mais</a>
+           style="color: var(--gold); font-weight:600; margin-left:.4rem; display: flex; flex-direction: row; justify-content: end">Saiba
+            mais</a>
 
         <div id="metodologia-extra" hidden aria-hidden="true"
              style="overflow:hidden; transition:max-height .35s ease; max-height:0">
@@ -171,7 +158,7 @@
 <!-- Equipe / Logos -->
 <section id="equipe">
     <div class="container">
-<!--        <span class="kicker">Quem realiza</span>-->
+        <!--        <span class="kicker">Quem realiza</span>-->
         <h3 class="title">Quem realiza</h3>
 
 
@@ -180,52 +167,70 @@
             <article class="card">
                 <h4 class="kicker">Coordenador do projeto</h4>
                 <p style="margin:0 0 8px"><strong>Prof. Dr. Agemir Bavaresco</strong></p>
-                <p style="margin:0"><a href="http://lattes.cnpq.br/6597683266934574" target="_blank" rel="noopener noreferrer">Currículo Lattes</a></p>
+                <p style="margin:0"><a href="http://lattes.cnpq.br/6597683266934574" target="_blank"
+                                       rel="noopener noreferrer">Currículo Lattes</a></p>
             </article>
             <article class="card">
                 <h4 class="kicker">Equipe 2025–2026</h4>
                 <ul style="padding-left:18px;margin:0 0 8px">
-                    <li>Profa. Dra. <strong>Renata Guadagnin</strong> (bolsista de pós-doutorado) — <a href="http://lattes.cnpq.br/8613316875410870" target="_blank" rel="noopener noreferrer">Lattes</a></li>
-                    <li><strong>Deise Silva de Castro</strong> (bolsista de mestrado) — <a href="http://lattes.cnpq.br/0743415201716328" target="_blank" rel="noopener noreferrer">Lattes</a></li>
+                    <li>Profa. Dra. <strong>Renata Guadagnin</strong> (bolsista de pós-doutorado) — <a
+                            href="http://lattes.cnpq.br/8613316875410870" target="_blank" rel="noopener noreferrer">Lattes</a>
+                    </li>
+                    <li><strong>Deise Silva de Castro</strong> (bolsista de mestrado) — <a
+                            href="http://lattes.cnpq.br/0743415201716328" target="_blank" rel="noopener noreferrer">Lattes</a>
+                    </li>
                 </ul>
             </article>
             <article class="card">
                 <h4 class="kicker">Equipe 2023–2024</h4>
                 <ul style="padding-left:18px;margin:0">
-                    <li>Profa. Dra. <strong>Camila Barbosa Palhares</strong> (bolsista de pós-doutorado) — <a href="http://lattes.cnpq.br/3838152756530280" target="_blank" rel="noopener noreferrer">Lattes</a></li>
-                    <li><strong>Enzo Efthymiatos</strong> (bolsista de mestrado) — <a href="http://lattes.cnpq.br/5725827157807415" target="_blank" rel="noopener noreferrer">Lattes</a></li>
-                    <li><strong>Alberto Domingos de Morais</strong> (bolsista de doutorado) — <a href="http://lattes.cnpq.br/3731309106826694" target="_blank" rel="noopener noreferrer">Lattes</a></li>
+                    <li>Profa. Dra. <strong>Camila Barbosa Palhares</strong> (bolsista de pós-doutorado) — <a
+                            href="http://lattes.cnpq.br/3838152756530280" target="_blank" rel="noopener noreferrer">Lattes</a>
+                    </li>
+                    <li><strong>Enzo Efthymiatos</strong> (bolsista de mestrado) — <a
+                            href="http://lattes.cnpq.br/5725827157807415" target="_blank" rel="noopener noreferrer">Lattes</a>
+                    </li>
+                    <li><strong>Alberto Domingos de Morais</strong> (bolsista de doutorado) — <a
+                            href="http://lattes.cnpq.br/3731309106826694" target="_blank" rel="noopener noreferrer">Lattes</a>
+                    </li>
                 </ul>
             </article>
         </div>
     </div>
 </section>
+<!-- Contato -->
+<section id="contato">
+    <div class="container">
+        <h3 class="title">Contato</h3>
+        <p class="lead">Para dúvidas, sugestões ou parcerias, entre em contato com nossa equipe.</p>
+
+        <div class="contact-form">
+            <article class="card">
+                <h4>Formulário de contato</h4>
+                <div role="region" aria-label="Formulário de Contato (Cognito)">
+                    <script src="https://www.cognitoforms.com/f/seamless.js" data-key="WkbTJnUSq0SBb-9_eCoymw"
+                            data-form="10"></script>
+                </div>
+            </article>
+
+            <article class="card">
+                <h4>Preferir e‑mail direto?</h4>
+                <div class="flex-row align-center justify-between" >
+                    <p>Você também pode escrever para: <strong><a href="mailto:p.alteridade@gmail.com">p.alteridade@gmail.com</a></strong>
+                    </p>
+                    <div style="margin-top:8px"><a class="btn btn-outline" href="mailto:p.alteridade@gmail.com">Abrir
+                        e‑mail</a></div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
 <div id="footer-placeholder"></div>
 <script src="assets/footer.js"></script>
 
 <!-- Modal de Seleção de Público -->
-<div id="publico-modal" aria-hidden="true" role="dialog" aria-labelledby="publico-modal-title" aria-modal="true"
-     style="position:fixed;inset:0;display:none;z-index:1000">
-    <!-- Overlay -->
-    <div data-modal-overlay style="position:absolute;inset:0;background:rgba(0,0,0,.5)"></div>
-    <!-- Caixa do modal -->
-    <div style="position:relative;max-width:560px;margin:8vh auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden">
-        <div style="padding:22px 22px 8px;display:flex;justify-content:space-between;align-items:center">
-            <h4 id="publico-modal-title" style="margin:0;font-size:1.2rem">Para quem é o formulário?</h4>
-            <button type="button" data-modal-close aria-label="Fechar" class="btn btn-outline"
-                    style="padding:.4rem .7rem;border-radius:10px">✕
-            </button>
-        </div>
-        <div style="padding:0 22px 22px">
-            <p style="margin:6px 0 18px;opacity:.85">Selecione o seu perfil para seguir para a versão correta do
-                questionário.</p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap">
-                <button type="button" class="btn btn-primary" id="btn-coordenadores">Para coordenadores</button>
-                <button type="button" class="btn btn-outline" id="btn-discentes">Para discentes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Modal de Seleção de Público será injetado pelo componente componentes/publico-modal.js -->
 
 <script>
 
@@ -260,50 +265,7 @@
         });
     }
 
-    // URLs de destino para cada público (ajuste conforme necessário)
-    const URL_COORDENADORES = 'coordenadores.html'; // TODO: substitua pelo link real
-    const URL_DISCENTES = 'discentes.html'; // TODO: substitua pelo link real
-
-    const modal = document.getElementById('publico-modal');
-    const openers = [
-        ...document.querySelectorAll('a[href="#participar"], a[href="#form"], #participar, .btn-primary[href="#participar"]')
-    ];
-
-    function openModal(e) {
-        if (e) e.preventDefault();
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
-        // focus no primeiro botão
-        setTimeout(() => document.getElementById('btn-coordenadores').focus(), 0);
-        document.addEventListener('keydown', escListener);
-    }
-
-    function closeModal() {
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'true');
-        document.removeEventListener('keydown', escListener);
-    }
-
-    function escListener(ev) {
-        if (ev.key === 'Escape') closeModal();
-    }
-
-    // Abrir modal a partir de todos os botões/links de participação
-    openers.forEach(el => {
-        el.addEventListener('click', openModal);
-    });
-
-    // Fechar modal
-    modal.querySelector('[data-modal-overlay]').addEventListener('click', closeModal);
-    modal.querySelector('[data-modal-close]').addEventListener('click', closeModal);
-
-    // Ações dos botões
-    document.getElementById('btn-coordenadores').addEventListener('click', () => {
-        window.location.href = URL_COORDENADORES;
-    });
-    document.getElementById('btn-discentes').addEventListener('click', () => {
-        window.location.href = URL_DISCENTES;
-    });
 </script>
+<script src="componentes/publico-modal.js"></script>
 </body>
 </html>
