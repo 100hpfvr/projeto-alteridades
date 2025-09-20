@@ -419,7 +419,7 @@
         <span class="kicker">Como fazemos</span>
         <h3 class="title">Metodologia</h3>
         <p class="lead">A pesquisa está sendo realizada por meio de questionário online, contendo perguntas fechadas e
-            abertas, direcionado a coordenadores e participantes de Programas de Pós-Graduação (PPGs) das Ciências
+            abertas, direcionado a coordenadores e discentes de Programas de Pós-Graduação (PPGs) das Ciências
             Humanas das regiões Norte, Sul e Centro-Oeste. </p>
 
         <p class="lead" style="margin-top: 1rem; margin-bottom: .5rem;">Os dados coletados serão tratados a partir de
@@ -439,15 +439,51 @@
             foram aprovadas
             pelo Comitê de Ética em Pesquisa (Plataforma Brasil)</strong>.
             <br/> <br/>
-            Os resultados serão sistematizados em <strong>relatório público</strong>, com <strong>visualizações interativas</strong> e <strong>recomendações
-            práticas</strong> para políticas de inclusão no Sistema Nacional de Pós-Graduação (SNPG). A metodologia também prevê
-            a <strong>formulação de um índice de Alteridade</strong> e a elaboração de um Plano de Boas Práticas para o desenvolvimento
-            de <strong>ferramenta de mapeamento de dados</strong>, de modo a oferecer um diagnóstico comparativo entre diferentes regiões
+            Os resultados serão sistematizados em <strong>relatório público</strong>, com <strong>visualizações
+                interativas</strong> e <strong>recomendações
+                práticas</strong> para políticas de inclusão no Sistema Nacional de Pós-Graduação (SNPG). A metodologia
+            também prevê
+            a <strong>formulação de um índice de Alteridade</strong> e a elaboração de um Plano de Boas Práticas para o
+            desenvolvimento
+            de <strong>ferramenta de mapeamento de dados</strong>, de modo a oferecer um diagnóstico comparativo entre
+            diferentes regiões
             do país. <br><br>
             Esse percurso metodológico alia a perspectiva filosófica da Alteridade, especialmente na leitura ética de
             Emmanuel Levinas, à análise interseccional (gênero, raça, classe e outros marcadores sociais). O objetivo é
-            <strong>produzir conhecimento científico aplicável</strong>, contribuindo para o fortalecimento de políticas afirmativas,
-            mais plurais e inclusivas, no contexto da pós-graduação brasileira.</p>
+            <strong>produzir conhecimento científico aplicável</strong>, contribuindo para o fortalecimento de políticas
+            afirmativas,
+            mais plurais e inclusivas, no contexto da pós-graduação brasileira.
+        </p>
+        <a href="#" id="expand-metodologia" aria-expanded="false" aria-controls="metodologia-extra"
+           style="color: var(--gold); font-weight:600; margin-left:.4rem; display: flex; flex-direction: row; justify-content: end" >Saiba mais</a>
+
+        <div id="metodologia-extra" hidden aria-hidden="true"
+             style="overflow:hidden; transition:max-height .35s ease; max-height:0">
+            <div style="padding-top:.5rem">
+                <p>O objetivo principal é investigar como a alteridade — especialmente nos recortes de gênero e raça —
+                    está sendo aplicada nos Programas de Pós-Graduação em Ciências Humanas, e de que forma pode ser
+                    fortalecida para ampliar o acesso e o desenvolvimento acadêmico.</p>
+                <p>A metodologia combina tecnologia, análise de dados e diálogo com os PPGs. Para isso, vamos:</p>
+                <ul>
+                    <li>aplicar formulários a coordenadores de Programas de Pós-Graduação em Ciências Humanas das
+                        regiões Norte, Sul e Centro-Oeste;
+                    </li>
+                    <li>mapear e organizar os dados sobre a composição discente e docente;</li>
+                    <li>realizar análises quantitativas e qualitativas, através das respostas aos questionários
+                        aplicados, com auxílio da plataforma Cognito Forms;
+                    </li>
+                    <li>partir dos resultados para poder formular soluções aos problemas relacionados às políticas de
+                        inclusão.
+                    </li>
+                </ul>
+                <p>Como resultados, o projeto prevê a produção de conteúdos científicos e didáticos, a oferta de cursos
+                    de formação em Ética, Alteridade e Direitos Humanos, a realização de eventos de discussão e a
+                    criação de parâmetros que auxiliem na avaliação da alteridade nos PPGs.</p>
+                <p>O impacto esperado é a criação de diretrizes e recomendações que ajudem a consolidar políticas
+                    afirmativas, fortalecendo a diversidade de gênero e étnico-racial na pós-graduação brasileira nas
+                    humanidades.</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -498,6 +534,37 @@
 
 <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Expand/Collapse Metodologia ---
+    const expandLink = document.getElementById('expand-metodologia');
+    const extra = document.getElementById('metodologia-extra');
+    if (expandLink && extra) {
+        expandLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = expandLink.getAttribute('aria-expanded') === 'true';
+            if (!isOpen) {
+                extra.hidden = false;
+                extra.setAttribute('aria-hidden', 'false');
+                // measure content height for smooth transition
+                const scrollHeight = extra.scrollHeight;
+                extra.style.maxHeight = scrollHeight + 'px';
+                expandLink.setAttribute('aria-expanded', 'true');
+                expandLink.textContent = 'Ver menos';
+            } else {
+                // collapse
+                extra.style.maxHeight = '0px';
+                expandLink.setAttribute('aria-expanded', 'false');
+                expandLink.textContent = 'Saiba mais';
+                // after transition, hide from a11y tree
+                setTimeout(() => {
+                    if (expandLink.getAttribute('aria-expanded') === 'false') {
+                        extra.hidden = true;
+                        extra.setAttribute('aria-hidden', 'true');
+                    }
+                }, 400);
+            }
+        });
+    }
 
     // URLs de destino para cada público (ajuste conforme necessário)
     const URL_COORDENADORES = 'coordenadores.html'; // TODO: substitua pelo link real
