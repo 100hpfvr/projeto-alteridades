@@ -200,22 +200,8 @@
         </div>
     </div>
 </section>
-<footer style="background: #ffffff">
-    <div class="container"
-         style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
-        <div>
-            <p style="margin:0;opacity:.9; color: var(--navy)">© <span id="y"></span> Pesquisa Alteridade • Todos os direitos reservados</p>
-            <a style="color: var(--gold) " href="#" >Política de Privacidade</a>
-
-        </div>
-        <div class="logos" aria-label="Logos de instituições">
-            <img src="assets/puc-logo.png" alt="PUCRS Escola de Humanidades">
-            <img src="assets/logo-alteridade-no-bg.png" alt="Programa Alteridade na Pós-Graduação">
-            <img src="assets/capes-logo.png" alt="CAPES">
-        </div>
-
-    </div>
-</footer>
+<div id="footer-placeholder"></div>
+<script src="assets/footer.js"></script>
 
 <!-- Modal de Seleção de Público -->
 <div id="publico-modal" aria-hidden="true" role="dialog" aria-labelledby="publico-modal-title" aria-modal="true"
@@ -242,7 +228,6 @@
 </div>
 
 <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
 
     // --- Expand/Collapse Metodologia ---
     const expandLink = document.getElementById('expand-metodologia');
