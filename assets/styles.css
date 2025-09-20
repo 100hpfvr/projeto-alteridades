@@ -43,9 +43,18 @@ main{
 
 /* ---------- Header ---------- */
 header {
-    position: sticky; top: 0; z-index: 40;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
     background: color-mix(in oklab, var(--navy) 92%, black 0%);
     color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.12)
+}
+
+/* offset to prevent content hiding under fixed header; applied when header is injected */
+body.has-fixed-header main, body.has-fixed-header section:first-of-type { 
+    /* approx header height; adjust responsive via media queries below */
+    padding-top: 82px;
+}
+@media (max-width: 640px) {
+    body.has-fixed-header main, body.has-fixed-header section:first-of-type { padding-top: 56px }
 }
 
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 }
@@ -121,6 +130,18 @@ footer { background: var(--navy); color: #fff; padding: 36px 0 }
     .nav-links { width: 100%; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between }
     .nav-links a { flex: 1 1 auto; text-align: center }
     .nav-links .btn { flex: 0 0 auto; margin-left: auto }
+}
+
+/* Correções de contraste e responsividade para o bloco de e-mail direto no contato */
+#email-direto { color: var(--ink) }
+#email-direto h4, #email-direto p, #email-direto a, #email-direto strong { color: var(--ink) }
+#email-direto .btn.btn-outline { border-color: var(--gold); color: var(--gold) }
+#email-direto .btn.btn-outline:hover { background: var(--gold); color: #1a1a1a }
+
+/* Layout: em telas pequenas, empilhar texto e botão */
+@media (max-width: 640px) {
+    #email-direto .flex-row { flex-direction: column; align-items: flex-start; gap: 8px }
+    #email-direto .btn { width: 100%; text-align: center }
 }
 
 .align-center { align-items: center }

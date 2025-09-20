@@ -6,9 +6,12 @@
   function template(){
     return (
       '<div id="publico-modal" aria-hidden="true" role="dialog" aria-labelledby="publico-modal-title" aria-modal="true"' +
-      '     style="position:fixed;inset:0;display:none;z-index:1000">' +
+      '     style="position:fixed;inset:0;display:none;z-index:5000">' +
+      '  <style>@media(max-width:640px){#publico-modal>div[role="document"]{width:92% !important}}' +
+      '  #publico-modal[aria-hidden="false"]{display:flex !important;align-items:center;justify-content:center}' +
+      '  </style>' +
       '  <div data-modal-overlay style="position:absolute;inset:0;background:rgba(0,0,0,.5)"></div>' +
-      '  <div style="position:relative;max-width:560px;margin:8vh auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden">' +
+      '  <div role="document" style="position:relative;max-width:560px;width:100%;margin:0 auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden">' +
       '    <div style="padding:22px 22px 8px;display:flex;justify-content:space-between;align-items:center">' +
       '      <h4 id="publico-modal-title" style="margin:0;font-size:1.2rem">Para quem é o formulário?</h4>' +
       '      <button type="button" data-modal-close aria-label="Fechar" class="btn btn-outline"' +
@@ -37,7 +40,8 @@
     if (e) e.preventDefault();
     var modal = document.getElementById('publico-modal');
     if (!modal) return;
-    modal.style.display = 'block';
+    // display is controlled via CSS when [aria-hidden="false"]
+    modal.style.display = 'flex';
     modal.setAttribute('aria-hidden', 'false');
     setTimeout(function(){ var b = document.getElementById('btn-coordenadores'); if(b) b.focus(); }, 0);
     document.addEventListener('keydown', escListener);

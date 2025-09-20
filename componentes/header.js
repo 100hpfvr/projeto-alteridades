@@ -13,6 +13,8 @@
           html = html.replace(/\n?\s*<a[^>]*data-open="publico-modal"[\s\S]*?<\/a>/i, '');
         }
         placeholder.innerHTML = html;
+        // add class to body to offset content for fixed header
+        try { document.body.classList.add('has-fixed-header'); } catch(_) {}
         try {
           // Torna a brand clicável para voltar ao site (index)
           var brand = placeholder.querySelector('.brand');
