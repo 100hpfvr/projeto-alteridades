@@ -107,6 +107,10 @@ h1 { font-family: "Shadows Into Light", cursive; font-size: clamp(2.6rem, 6vw, 4
 
 .card { background: #fff; border: 1px solid #e7e7e7; border-radius: 18px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.06) }
 .card h4 { margin: 0 0 6px }
+.card-alt {
+    background: linear-gradient(135deg, color-mix(in oklab, var(--blue) 80%, white 20%), color-mix(in oklab, var(--pink) 60%, white 40%));
+    border: none;
+}
 
 .chip { display: inline-block; padding: 6px 10px; border-radius: 999px; background: color-mix(in oklab, var(--blue) 20%, white 80%); border: 1px solid color-mix(in oklab, var(--blue) 50%, white 50%); font-size: .8rem; margin-right: 6px }
 
@@ -116,7 +120,7 @@ h1 { font-family: "Shadows Into Light", cursive; font-size: clamp(2.6rem, 6vw, 4
 /* ---------- Rodapé e Logos ---------- */
 footer { background: var(--navy); color: #fff; padding: 36px 0 }
 .logos { display: flex; gap: 28px; flex-wrap: wrap; align-items: center }
-.logos img { height: 120px; filter: grayscale(0%) }
+.logos img { height: 60px; filter: grayscale(0%) }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 960px) {
