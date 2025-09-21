@@ -90,8 +90,8 @@
     // Ações dos botões
     var btnCoord = document.getElementById('btn-coordenadores');
     var btnDisc = document.getElementById('btn-discentes');
-    if (btnCoord) btnCoord.addEventListener('click', function(){ window.location.href = URL_COORDENADORES; });
-    if (btnDisc) btnDisc.addEventListener('click', function(){ window.location.href = URL_DISCENTES; });
+    if (btnCoord) btnCoord.addEventListener('click', function(){ if (window.ConsentimentoModal) { window.ConsentimentoModal.open(URL_COORDENADORES); } else { window.location.href = URL_COORDENADORES; } });
+    if (btnDisc) btnDisc.addEventListener('click', function(){ if (window.ConsentimentoModal) { window.ConsentimentoModal.open(URL_DISCENTES); } else { window.location.href = URL_DISCENTES; } });
 
     // API simples para abertura programática
     window.PublicoModal = {
