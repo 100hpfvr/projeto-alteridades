@@ -47,6 +47,12 @@ header {
     background: color-mix(in oklab, var(--navy) 92%, black 0%);
     color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.12)
 }
+/* On small screens, do not keep the header fixed/sticky */
+@media (max-width: 640px) {
+    header { position: static; }
+    /* remove top padding offset when header is not fixed */
+    body.has-fixed-header main, body.has-fixed-header section:first-of-type { padding-top: 0 }
+}
 
 /* offset to prevent content hiding under fixed header; applied when header is injected */
 body.has-fixed-header main, body.has-fixed-header section:first-of-type { 
